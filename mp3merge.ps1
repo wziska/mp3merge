@@ -2,12 +2,20 @@ param(
   [Parameter(Mandatory=$true)]
   [String] $Directory)
 
+
+if ($false -eq (Test-Path $Directory)) {
+  Write-Error "Directory doesn't exist." -ErrorAction Stop
+}
+
 if ((Get-Item $Directory) -is [System.IO.DirectoryInfo]) {
   $files = Get-ChildItem -Path $Directory -Filter *.mp3 | Select-Object -ExpandProperty FullName
 }
 else {
-  Write-Host 'not a directory'
-  exit
+  Write-Error "Not a directory." -ErrorAction Stop
+}
+
+if ($null -eq $files -or $files.GetType().Name -eq "String") {
+  Write-Error "No mp3s found." -ErrorAction Stop
 }
 
 $dirName = (Split-Path $Directory -Leaf)
