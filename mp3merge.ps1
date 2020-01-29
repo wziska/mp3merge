@@ -27,8 +27,13 @@ mp3wrap -v tmp.mp3 $files
 id3cp $files[0] tmp_MP3WRAP.mp3
 vbrfix tmp_MP3WRAP.mp3 $output
 
-if ($LastExitCode -eq 255) {
+$exited = $LastExitCode
+Write-Host "Exited with code: $exited"
+if ($exited -eq 255) {
   Move-Item -Path ./tmp_MP3WRAP.mp3 -Destination $output
-} elseif ($LastExitCode -eq 0) {
-  Remove-Item ./tmp_MP3WRAP.mp3
+} elseif ($exited -eq 0) {
+  Write-Host "removing remoprary files..."
+  Remove-Item -Path ./tmp_MP3WRAP.mp3
+  Remove-Item -Path ./vbrfix.log
+  Remove-Item -Path ./vbrfix.tmp
 }
