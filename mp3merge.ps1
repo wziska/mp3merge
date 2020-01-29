@@ -37,3 +37,5 @@ if ($exited -eq 255) {
   Remove-Item -Path ./vbrfix.log
   Remove-Item -Path ./vbrfix.tmp
 }
+
+id3v2 -t $dirName $output
