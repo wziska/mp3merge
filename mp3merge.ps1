@@ -32,7 +32,7 @@ Write-Host "Exited with code: $exited"
 if ($exited -eq 255) {
   Move-Item -Path ./tmp_MP3WRAP.mp3 -Destination $output
 } elseif ($exited -eq 0) {
-  Write-Host "removing remoprary files..."
+  Write-Host "removing temporary files..."
   Remove-Item -Path ./tmp_MP3WRAP.mp3
   Remove-Item -Path ./vbrfix.log
   Remove-Item -Path ./vbrfix.tmp
