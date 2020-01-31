@@ -38,4 +38,5 @@ if ($exited -eq 255) {
   Remove-Item -Path ./vbrfix.tmp
 }
 
-id3v2 -t $dirName $output
+$dirName -match '.* - (?<Title>.*)'
+id3v2 -t $Matches.Title $output
