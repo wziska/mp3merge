@@ -5,8 +5,13 @@ param(
 function Merge([System.IO.DirectoryInfo] $Directory) {
   $files = Get-ChildItem -Path $Directory -Filter *.mp3 | Select-Object -ExpandProperty FullName
 
-  if ($null -eq $files -or $files.GetType().Name -eq "String") {
+  if ($null -eq $files) {
     Write-Error "No mp3s found." -ErrorAction Stop
+  }
+
+  if ($files.GetType().Name -eq "String") {
+    Write-Warning "Single mp3 - nothing to merge"
+    return
   }
 
   $dirName = (Split-Path $Directory -Leaf)
