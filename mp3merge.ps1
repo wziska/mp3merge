@@ -3,6 +3,7 @@ param(
   [Switch] $Recursive)
 
 function Merge([System.IO.DirectoryInfo] $Directory) {
+  Write-Host "Merging mp3s in $Directory"
   $files = Get-ChildItem -Path $Directory -Filter *.mp3 | Select-Object -ExpandProperty FullName
 
   if ($null -eq $files) {
@@ -45,6 +46,9 @@ $dir = Get-Item $Directory
 if (!($dir -is [System.IO.DirectoryInfo])) {
   Write-Error "Not a directory." -ErrorAction Stop
 }
+
+Write-Host "dir: $dir"
+Write-Host "recursive: $Recursive"
 
 if ($Recursive) {
   Get-ChildItem -Path $dir -Recurse -Directory | ForEach-Object {
