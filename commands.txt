@@ -1,0 +1,6 @@
+unar -o /mnt/c/Users/woza/Music/_new12/ /mnt/c/Users/woza/Music/_new12/
+/source/mp3merge/mp3merge.ps1 /mnt/c/Users/woza/Music/_new12/
+ls -l /mnt/c/Users/woza/Music/_new12/ | grep '^d'
+mv /mnt/c/Users/woza/Music/_new12/ /mnt/c/Users/woza/Music/mp3/
+ls -l /mnt/c/Users/woza/Music/_new12/
+rm -r /mnt/c/Users/woza/Music/_new12/
